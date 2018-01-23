@@ -59,3 +59,21 @@ C:\Meteor-Employees>meteor add react-meteor-data
 ```
 
 * In *employee_list.js* we can now export a container that subscribes to the *employees* collection, fetches the published portion of data and passes them as props to the *EmployeeList*.
+
+
+&nbsp;
+## 05 display employee details
+
+* Replace the deprecated *createContainer* with *withTracker*.
+
+* Create *EmployeeDetail*.
+
+* In the return of *EmployeeList*, map the employee objects from the passed prop and display a detail for each of them. While mapping, pass the prop through to the detail.
+
+* Scaffold the *EmployeeDetail* so that it displays the passed props data.
+
+* Add twitter bootstrap and style the app with it and with flexbox.
+
+```
+C:\Meteor-Employees>meteor add twbs:bootstrap@3.3.6
+```
