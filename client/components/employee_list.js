@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Employees } from '../../imports/collections/employees';
 import EmployeeDetail from './employee_detail';
 
-const EmployeeList = (props) => {
+const PER_PAGE = 10;
 
-  console.log(props.employeesprop);
+class EmployeeList extends Component {
+  componentWillMount() {
+    this.page = 1;
+  }
 
-  return (
-    <div>
-      <div className="employeelist">
-        {props.employeesprop
-          .map( x => <EmployeeDetail key={x._id} employeedetailprop={x} />)}
+  handleClick() {
+    Meteor.subscribe('employees', PER_PAGE*(this.page + 1));
+    this.page += 1;
+  }
+
+  render() {
+    console.log(this.props.employeesprop);
+
+    return (
+      <div>
+        <div className="employeelist">
+          {this.props.employeesprop
+            .map( x => <EmployeeDetail key={x._id} employeedetailprop={x} />)}
+          <button
+            onClick={this.handleClick.bind(this)}
+            className="btn btn-primary btn-block">
+            Load More
+          </button>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default withTracker(() => {
-  Meteor.subscribe('employees');
+  Meteor.subscribe('employees', PER_PAGE);
   return { employeesprop: Employees.find({}).fetch() }
 })(EmployeeList);

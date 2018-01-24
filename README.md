@@ -77,3 +77,12 @@ C:\Meteor-Employees>meteor add react-meteor-data
 ```
 C:\Meteor-Employees>meteor add twbs:bootstrap@3.3.6
 ```
+
+&nbsp;
+## 06 load more
+
+* Add a parameter to the publisher callback in *server/main.js*.
+
+* Refactor *EmployeeList* to a class based component and add a button.
+
+* On button click, call the subscription with a renewed argument.
